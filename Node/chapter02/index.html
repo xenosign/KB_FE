@@ -2,8 +2,10 @@
 <html lang="en">
   <body>
     <h1 class="header">Hello, Protocol</h1>
-    <button onclick="fetchData()">백엔드 통신 경험하기</button>
-    <button onclick="errorHandling()">백엔드 에러 경험하기</button>
+    <button onclick="fetchData()">백엔드 통신 경험하기 - Promise</button>
+    <button onclick="errorHandling()">
+      백엔드 에러 경험하기 - Async/await
+    </button>
   </body>
 
   <script>
@@ -16,7 +18,8 @@
         .then((data) => {
           console.log(data);
           headerEl.innerHTML = data;
-        });
+        })
+        .catch((err) => console.log(err));
     };
 
     async function errorHandling() {
