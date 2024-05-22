@@ -41,8 +41,8 @@ function addProperty(arr) {
 // addProperty(aClassArr);
 // console.log(aClassArr);
 
-// const findedIndex = aClassArr.findIndex(function (student) {
-//   console.log(student);
+// const findedIndex = aClassArr.findIndex(function (student, index) {
+//   console.log(student, index);
 //   return student.name === '김시완';
 // });
 
@@ -58,17 +58,39 @@ function addProperty(arr) {
 
 // aClassArr.배열함수((각각의배열) => 원하는조건);
 
-const overIdTenStudents = aClassArr.filter(function (student) {
-  return student.id >= 10;
-});
+// const overIdTenStudents = aClassArr.filter(function (student) {
+//   return student.id >= 10;
+// });
 
 // console.log(overIdTenStudents);
 
-const addedAClassArr = aClassArr.map(function (student) {
-  return {
-    ...student,
-    condition: 'good',
-  };
-});
+// const addedAClassArr = aClassArr.map(function (student) {
+//   return {
+//     ...student,
+//     condition: 'good',
+//   };
+// });
 
-console.log(addedAClassArr);
+const sumId = aClassArr.reduce(function (acc, cur, index) {
+  return (acc += cur.name);
+}, '');
+
+console.log(sumId);
+
+// console.log(sumId);
+
+// aClassArr.reduce(function (합계, 각각의배열, ))
+
+// aClassArr.map(function (각각의배열, 배열인덱스) {
+//   return 원하는배열의값;
+// });
+
+// aClassArr.배열함수((각각의배열, 배열인덱스) => 원하는조건);
+
+// aClassArr.배열함수(function (각각의배열, 배열인덱스) {
+//   return 원하는조건;
+// });
+
+// aClassArr.reduce(function (합계, 각각의배열, 배열인덱스) {
+//   return 합계에대한처리;
+// });
