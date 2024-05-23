@@ -94,3 +94,12 @@ console.log(sumId);
 // aClassArr.reduce(function (합계, 각각의배열, 배열인덱스) {
 //   return 합계에대한처리;
 // });
+
+const obj = {
+  name: 'lhs',
+  eat: function () {
+    console.log(obj.name);
+  },
+};
+
+obj.eat();
