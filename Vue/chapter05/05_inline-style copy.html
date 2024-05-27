@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-bind:style="{backgroundColor, color}">
+        여러 서타일 적용하기 by 객체
+      </h1>
+    </div>
+  </body>
+  <script>
+    const vueApp = Vue.createApp({
+      name: 'App',
+      data() {
+        return {
+          backgroundColor: 'dodgerblue',
+          color: 'red',
+        };
+      },
+    }).mount('#app');
+  </script>
+</html>
