@@ -94,7 +94,7 @@
         { id: 6, title: '파이썬 머신러닝', enroll_type: 0, is_free: false },
       ];
 
-      // 필터 조건 생성 함수
+      // 필터 조건 생성 함수, 제목과 유-무료 여부를 기반으로 필터 조건을 만들고 실제 버튼이 클릭되면 해당 필터 조건을 전달
       const createFilterConditions = (title, isFree) => {
         const filter_conditions = {
           $and: [{ title: title === 'all' ? '%' : `%${title}` }],
@@ -116,13 +116,15 @@
         return filter_conditions;
       };
 
-      // 필터 상태 관리
+      // 필터 상태 관리, 초기 로딩 시 별도의 주소 값이 존재하지 안을 경우 기본으로 제공되는 필터 조건을 설정
       let currentFilters = {
         title: 'all',
         isFree: 'all',
       };
 
-      // URL 파라미터 업데이트
+      // URL 파라미터 업데이트, 필터 버튼이 클릭되면 해당 조건을 브라우저 주소 값에 업데이트 시키는 메서드
+      // JS 기본 내장 기능인 URLSearchParams 을 이용하여 사용자 선택에 따라 주소 값을 업데이트
+      // 주소에 filter 조건이 남아 있으면 페이지를 새로 고침하여도 해당 조건이 유지되도록 함
       const updateURLParams = () => {
         const searchParams = new URLSearchParams();
         searchParams.set('title', currentFilters.title);
@@ -140,6 +142,7 @@
       };
 
       // URL에서 필터 로드
+      // 페이지 초기 로딩시 브라우저의 주소 값에 필터 조건이 존재하면 해당 조건을 로드하여 필터 상태를 업데이트
       const loadFiltersFromURL = () => {
         const params = new URLSearchParams(window.location.search);
         const filterConditions = params.get('filter_conditions');
@@ -163,6 +166,7 @@
       };
 
       // 강의 필터링
+      // 필터 조건을 바탕으로 어떤 강의를 그려야할지 데이터를 필터링하는 메서드
       const filterLectures = () => {
         const filterConditions = createFilterConditions(
           currentFilters.title,
@@ -187,6 +191,7 @@
       };
 
       // 강의 표시 업데이트
+      // 필터링된 강의 데이터를 바탕으로 실제 강의 Chip 을 업데이트 된 강의 목록으로 다시 그리는 메서드
       const updateLecturesDisplay = () => {
         const filteredLectures = filterLectures();
         const container = document.getElementById('lecturesContainer');
@@ -203,7 +208,7 @@
           )
           .join('');
 
-        // 칩 활성화 상태 업데이트
+        // 칩 활성화 상태 업데이트, 필터 버튼이 클릭되면 해당 조건을 브라우저 주소 값에 업데이트 시키는 메서드
         document.querySelectorAll('.chip').forEach((chip) => {
           if (chip.dataset.title !== undefined) {
             chip.classList.toggle(
